@@ -45,14 +45,16 @@ const Square = ({
     <div
       id={position}
       className={cn(
-        "w-12 h-12 flex items-center justify-center text-3xl",
+        "w-12 h-12 flex items-center justify-center text-3xl relative",
         color,
-        isSelected ? "bg-green-500/60" : "",
-        isPossibleMove ? "bg-green-500/60" : ""
+        isSelected && "bg-green-500/60"
       )}
       onClick={handleClick}
     >
       {piece}
+      {isPossibleMove && !isSelected && (
+        <div className="absolute w-3 h-3 bg-green-500 rounded-full"></div>
+      )}
     </div>
   );
 };
@@ -98,7 +100,9 @@ const Chessboard = () => {
         console.log("Possible moves:", moves);
 
         // Extract destination squares from move notation
-        const destinations = moves.map((move) => move.match(/[a-h][1-8]/)?.[0] || "");
+        const destinations = moves.map(
+          (move) => move.match(/[a-h][1-8]/)?.[0] || ""
+        );
         console.log("Destinations:", destinations);
 
         setPossibleMoves(destinations);
