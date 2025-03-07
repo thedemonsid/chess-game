@@ -1,4 +1,5 @@
 import Chessboard from "@/components/chessboard";
+import { Chess } from "chess.js";
 import React from "react";
 
 const Play = () => {
