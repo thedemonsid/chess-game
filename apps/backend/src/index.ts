@@ -8,11 +8,15 @@ wss.on("connection", function connection(ws) {
   ws.on("error", console.error);
 
   ws.on("message", function message(data) {
-    const message = JSON.parse(data.toString());
-    if (message.type === INIT_GAME) {
-      gameManager.addPlayer(ws);
-    } else if (message.type === MOVE) {
-      gameManager.handleMove(ws, message.move);
+    try {
+      const message = JSON.parse(data.toString());
+      if (message.type === INIT_GAME) {
+        gameManager.addPlayer(ws);
+      } else if (message.type === MOVE) {
+        gameManager.handleMove(ws, message.move);
+      }
+    } catch (error) {
+      console.error(error);
     }
   });
   ws.on("close", function close() {

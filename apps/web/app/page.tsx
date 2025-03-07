@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="min-h-screen text-slate-800">
+    <main className="min-h-screen">
       {/* Navigation Bar */}
       <nav className="bg-slate-800 text-white p-4">
         <div className="max-w-5xl mx-auto flex justify-between items-center">
