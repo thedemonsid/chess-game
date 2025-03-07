@@ -98,18 +98,8 @@ const Chessboard = () => {
         console.log("Possible moves:", moves);
 
         // Extract destination squares from move notation
-        const destinations = moves
-          .map((move) => {
-            if (move.length === 3) {
-              return move.slice(1);
-            } else if (move.length === 4) {
-              return move.slice(1, 3);
-            }else if (move.length === 5) {
-              return move.slice(2, 4);
-            }
-            return null;
-          })
-          .filter(Boolean) as string[];
+        const destinations = moves.map((move) => move.match(/[a-h][1-8]/)?.[0] || "");
+        console.log("Destinations:", destinations);
 
         setPossibleMoves(destinations);
       } catch (error) {
